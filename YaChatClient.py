@@ -57,12 +57,12 @@ class ChatterClient:
     ###########################################################
     ##Private functions to communicate to TCP and UDP sockets##
     ###########################################################
-    def __send_string_to_server(self, Input_string):
+    def __send_string_to_tcp(self, Input_string):
         if self.__debug_mode:
             self.__print_to_chat_console_log("TCP Send: " + repr(Input_string))
         self.server_socket.send(Input_string.encode())
 
-    def __get_string_from_server(self):
+    def __get_string_from_tcp(self):
         server_character_response = ""
         server_response = ""
         while server_character_response != '\n':
@@ -93,8 +93,8 @@ class ChatterClient:
         self.__print_to_chat_console_log("Attempted to connect to Server")
         connect_string = "HELO " + self.client_name + " " + self.server_ip + " " + str(self.client_port) + '\n'
 
-        self.__send_string_to_server(connect_string)
-        server_response = self.__get_string_from_server()
+        self.__send_string_to_tcp(connect_string)
+        server_response = self.__get_string_from_tcp()
 
         if server_response.startswith("RJCT"):
             sys.exit()
@@ -108,7 +108,7 @@ class ChatterClient:
 
     def request_exit_from_server(self):
         self.__print_to_chat_console_log("Requesting to leaving the session")
-        self.__send_string_to_server("EXIT\n")
+        self.__send_string_to_tcp("EXIT\n")
 
     #########################
     ##Thread for UDP socket##
