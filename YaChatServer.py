@@ -16,7 +16,7 @@ class ChatterServer:
         #Variables of the server
         self.__exit_server = False
         self.__connection_established = False
-        self.__debug_mode = True
+        self.__debug_mode = False
 
         #Parsing input arguments
         if Ip == "localhost":
@@ -162,6 +162,10 @@ class ChatterServer:
 
     def __parse_service_exit(self, Chatter_name):
         pass
+
+    ####Print Helper Function####
+    def __print_to_chat_console_log(self, Input_string):
+        print(Input_string)
 
     #####################################################################################
     ##Start function for client. Must be run after initial connection to server is made##

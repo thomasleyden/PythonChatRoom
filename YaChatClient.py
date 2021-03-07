@@ -16,7 +16,7 @@ class ChatterClient:
         #Variables of the client
         self.__exit_server = False
         self.__connection_established = False
-        self.__debug_mode = False
+        self.__debug_mode = True
 
         self.client_name = Name
         if Ip == "localhost":
